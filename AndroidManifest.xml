@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="org.myhouse.FuelManager"
+          android:versionCode="1"
+          android:versionName="1.0">
+     <application android:label="@string/app_name" android:icon="@drawable/fuelmanager">
+          <activity android:name="org.myhouse.FuelManager.FuelManager"
+                    android:label="@string/app_name">
+               <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+               </intent-filter>
+          </activity>
+          <activity
+               android:name="org.myhouse.FuelManager.EntryForm"
+               android:label="@string/title_entry_form"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.EditMileageData"
+               android:label="@string/title_edit_data"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.Config"
+               android:label="@string/title_configuration"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.EditRecord"
+               android:label="editdata"
+               android:theme="@android:style/Theme.Dialog"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.AddVehicle"
+               android:label="@string/title_add_vehicle"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.EditVehicle"
+               android:label="@string/title_edit_vehicle"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.EditVehicleForm"
+               android:label="@string/title_edit_vehicle_form"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.MonthlyStats"
+               android:label="@string/title_monthly_stats"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.YearlyStats"
+               android:label="@string/title_yearly_stats"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.LifetimeStats"
+               android:label="@string/title_lifetime_stats"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.Login"
+               android:label="@string/title_login"
+               android:theme="@android:style/Theme.Dialog"
+          />
+          <activity
+               android:name="org.myhouse.FuelManager.About"
+               android:label="@string/title_about"
+          />
+          
+          
+<!--          <activity
+               android:name="EditVehicle"
+               android:label="@string/edit_vehicle"
+               android:theme="@android:style/Theme.Holo.Dialog"
+               android:parentActivityName="org.myhouse.FuelManager.EditVehicle" >
+               <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="org.myhouse.FuelManager" />
+          </activity>
+          <activity
+               android:name="Config"
+               android:label="@string/configuration"
+               android:theme="@android:style/Theme.Holo.Dialog"
+               android:parentActivityName="org.myhouse.FuelManager.Config" >
+               <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="org.myhouse.FuelManager" />
+          </activity>-->
+          
+     </application>
+     <uses-sdk android:minSdkVersion="14"/>       
+     <uses-permission android:name="android.permission.INTERNET" /> 
+</manifest>

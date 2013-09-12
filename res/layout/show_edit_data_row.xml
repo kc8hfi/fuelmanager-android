@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content" 
+    >
+<!--    <ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="22px"
+        android:layout_height="22px"
+        android:layout_marginLeft="4px"
+        android:layout_marginRight="10px"
+        android:layout_marginTop="4px"
+        android:src="@drawable/ic_launcher" >
+    </ImageView>-->
+
+    <TextView
+        android:id="@+id/miles"
+        android:gravity="center"
+        android:layout_width="10dip"        
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#000000"
+        >
+    </TextView>
+     <TextView
+          android:id="@+id/gallons"
+          android:gravity="center"
+          android:layout_width="10dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textColor="#000000"
+          >
+     </TextView>    
+     <TextView
+          android:id="@+id/cost"
+          android:gravity="center"
+          android:layout_width="10dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textColor="#000000"
+          >
+     </TextView>    
+     <TextView
+          android:id="@+id/mpg"
+          android:gravity="center"
+          android:layout_width="10dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textColor="#000000"
+          >
+     </TextView>    
+     
+<!--                android:textSize="20px"  -->
+     <TextView
+          android:id="@+id/fillup_date"
+          android:layout_width="80dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textColor="#000000"
+          >
+     </TextView>    
+
+</LinearLayout> 

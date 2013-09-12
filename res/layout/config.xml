@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+     <TextView android:id="@+id/dbase_label"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content"
+          android:text="Database location"
+          />           
+          
+     <RadioGroup android:id="@+id/dbase_location"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+               >
+          
+          <RadioButton android:id="@+id/local"
+               android:text="@string/radio_local"
+                    />
+          <RadioButton android:id="@+id/remote"
+               android:text="@string/radio_remote"
+                    />
+     </RadioGroup>
+                    
+     
+     <!-- These items won't be visible until the remote radio button gets checked -->
+     <EditText android:id="@+id/hostname"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="hostname"
+          android:singleLine="true"
+     />
+<!--     <EditText android:id="@+id/port"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="port"
+          android:inputType="number"
+          android:digits="0123456789"
+          android:singleLine="true"
+     />-->
+     <EditText android:id="@+id/database"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="database name"
+          android:singleLine="true"
+     />
+
+     
+     <Button android:id="@+id/saveConfig"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="Save Changes"
+          android:onClick="saveChanges"
+          />
+
+</LinearLayout>
+

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+     <Button android:id="@+id/selectVehicle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="@string/pick"
+          android:onClick="selectVehicle"
+     />
+     
+     
+     
+     
+     
+     
+
+    <!--padding = distance around the actual text -->
+    <!--margin = distance around the component itself -->
+    
+<!--<TableLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+>
+     <TableRow
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@color/notallblack"
+          
+     >
+          <TextView
+               android:id="@+id/something"
+               android:text="header1"
+               android:background="@color/alternate"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginTop="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+          <TextView
+               android:text="header2"
+               android:background="@color/alternate"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginTop="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+          <TextView
+               android:text="header3"
+               android:background="@color/alternate"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginRight="2dip"
+               android:layout_marginTop="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+     </TableRow>
+     
+     <TableRow
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@color/notallblack"
+     >
+          <TextView
+               android:text="Column 1"
+               android:background="@color/white"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+          <TextView
+               android:text="Column 2"
+               android:background="@color/white"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+          <TextView
+               android:text="Column 3"
+               android:background="@color/white"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginRight="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+     </TableRow>  
+     <TableRow
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@color/notallblack"
+          
+     >
+          <TextView
+               android:text="C1"
+               android:background="@color/alternate"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+          <TextView
+               android:text="C2"
+               android:background="@color/alternate"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+          <TextView
+               android:text="C3"
+               android:background="@color/alternate"
+               android:paddingLeft="3dip"
+               android:paddingRight="3dip"
+               android:layout_marginLeft="2dip"
+               android:layout_marginRight="2dip"
+               android:layout_marginBottom="2dip"
+          >
+          </TextView>
+     </TableRow>
+     
+</TableLayout>-->
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     <HorizontalScrollView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">     
+          
+<!--          <LinearLayout
+               android:orientation="vertical"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+          >
+               <TableLayout
+                    android:id="@+id/headers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1"
+                    android:background="@color/notallblack"
+               >
+               </TableLayout>-->
+               <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                         android:orientation="horizontal"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                    >
+                         <TableLayout
+                              android:id="@+id/scroll"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:stretchColumns="1"
+                              android:background="@color/notallblack"
+                         >
+                         </TableLayout>
+                    </LinearLayout>
+               </ScrollView>
+<!--           </LinearLayout>  -->
+     </HorizontalScrollView>
+</LinearLayout> 
+

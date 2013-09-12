@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+>
+     <ScrollView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"  
+          android:layout_centerVertical="true"
+     >
+          <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="horizontal"
+          >
+               <LinearLayout 
+                         android:orientation="vertical"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:padding="5dip"
+                    >
+                    <Button android:id="@+id/entry_form"
+                         android:layout_width="wrap_content" 
+                         android:layout_height="wrap_content" 
+                         android:onClick="onClickOption"
+                         android:text="@string/title_entry_form"
+                         android:drawableTop="@drawable/entryform"
+                         android:padding="20dip"
+                         android:layout_marginBottom="10dip"
+                         android:layout_gravity="center_horizontal"
+                         android:background="@null"
+                    />
+                    <Button android:id="@+id/edit_data"
+                         android:layout_width="wrap_content" 
+                         android:layout_height="wrap_content" 
+                         android:onClick="onClickOption"
+                         android:text="@string/title_edit_data"
+                         android:drawableTop="@drawable/editdata"
+                         android:padding="20dip"
+                         android:layout_marginBottom="10dip"
+                         android:layout_gravity="center_horizontal"
+                         android:background="@null"
+                    />
+                    <Button android:id="@+id/monthly_stats"
+                         android:layout_width="wrap_content" 
+                         android:layout_height="wrap_content" 
+                         android:onClick="onClickOption"
+                         android:text="@string/title_monthly_stats"
+                         android:drawableTop="@drawable/monthly"
+                         android:layout_marginBottom="10dip"
+                         android:padding="20dip"
+                         android:layout_gravity="center_horizontal"
+                         android:background="@null"
+                    />
+               </LinearLayout>
+               <LinearLayout 
+                         android:orientation="vertical"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:padding="5dip"
+                    >
+                    <Button android:id="@+id/yearly_stats"
+                         android:layout_width="wrap_content" 
+                         android:layout_height="wrap_content" 
+                         android:onClick="onClickOption"
+                         android:text="@string/title_yearly_stats"
+                         android:drawableTop="@drawable/yearly"
+                         android:layout_marginBottom="10dip"
+                         android:padding="20dip"
+                         android:layout_gravity="center_horizontal"
+                         android:background="@null"
+                    />
+                    <Button android:id="@+id/lifetime_stats"
+                         android:layout_width="wrap_content" 
+                         android:layout_height="wrap_content" 
+                         android:onClick="onClickOption"
+                         android:text="@string/title_lifetime_stats"
+                         android:drawableTop="@drawable/lifetime"
+                         android:layout_marginBottom="10dip"
+                         android:padding="20dip"
+                         android:layout_gravity="center_horizontal"
+                         android:background="@null"
+                    />     
+                    <Button android:id="@+id/about"
+                         android:layout_width="wrap_content" 
+                         android:layout_height="wrap_content" 
+                         android:onClick="onClickOption"
+                         android:text="@string/title_about"
+                         android:drawableTop="@drawable/about"
+                         android:padding="20dip"
+                         android:layout_gravity="center_horizontal"
+                         android:background="@null"
+                         
+                    />     
+               </LinearLayout>
+          </LinearLayout>
+     </ScrollView>
+</RelativeLayout>
+
+
+
+<!--<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent" 
+     android:columnCount="2"
+     android:rowCount="3"
+>
+     <Button android:id="@+id/entry_form"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content" 
+          android:onClick="onClickOption"
+          android:text="@string/title_entry_form"
+     />
+     <Button android:id="@+id/edit_data"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content" 
+          android:onClick="onClickOption"
+          android:text="@string/title_edit_data"
+     />
+     <Button android:id="@+id/monthly_stats"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content" 
+          android:onClick="onClickOption"
+          android:text="@string/title_monthly_stats"
+     />
+     <Button android:id="@+id/yearly_stats"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content" 
+          android:onClick="onClickOption"
+          android:text="@string/title_yearly_stats"
+     />
+     <Button android:id="@+id/lifetime_stats"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content" 
+          android:onClick="onClickOption"
+          android:text="@string/title_lifetime_stats"
+     />     
+     <Button android:id="@+id/about"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content" 
+          android:onClick="onClickOption"
+          android:text="@string/title_about"
+     />     
+</GridLayout> -->
+
+<!--<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+>
+<ScrollView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_centerHorizontal="true"     
+>
+     <LinearLayout 
+               android:orientation="vertical"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:padding="10dip"
+          >
+
+          <Button android:id="@+id/entry_form"
+               android:layout_width="match_parent" 
+               android:layout_height="wrap_content" 
+               android:onClick="onClickOption"
+               android:text="@string/title_entry_form"
+               
+          />
+          <Button android:id="@+id/edit_data"
+               android:layout_width="match_parent" 
+               android:layout_height="wrap_content" 
+               android:onClick="onClickOption"
+               android:text="@string/title_edit_data"
+          />
+          <Button android:id="@+id/monthly_stats"
+               android:layout_width="match_parent" 
+               android:layout_height="wrap_content" 
+               android:onClick="onClickOption"
+               android:text="@string/title_monthly_stats"
+          />
+          <Button android:id="@+id/yearly_stats"
+               android:layout_width="match_parent" 
+               android:layout_height="wrap_content" 
+               android:onClick="onClickOption"
+               android:text="@string/title_yearly_stats"
+          />
+          <Button android:id="@+id/lifetime_stats"
+               android:layout_width="match_parent" 
+               android:layout_height="wrap_content" 
+               android:onClick="onClickOption"
+               android:text="@string/title_lifetime_stats"
+          />     
+          <Button android:id="@+id/about"
+               android:layout_width="match_parent" 
+               android:layout_height="wrap_content" 
+               android:onClick="onClickOption"
+               android:text="@string/title_about"
+          />     
+     </LinearLayout>
+</ScrollView>
+</RelativeLayout>-->
+
+  

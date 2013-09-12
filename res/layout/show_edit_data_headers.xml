@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="horizontal"
+     android:background="@color/alternate"
+>
+<!--     android:background="#ABABAB" gray-->
+<!-- android:textColor="#000000"     -->
+<!--    <ImageView
+        android:id="@+id/ImageViewheader"
+        android:layout_width="22px"
+        android:layout_height="22px"
+        android:layout_marginLeft="4px"
+        android:layout_marginRight="10px"
+        android:layout_marginTop="4px"
+        android:src="@drawable/ic_launcher" >
+    </ImageView>-->
+     <TextView
+          android:id="@+id/milesheader"
+          android:gravity="center"
+          android:layout_width="10dip"        
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/miles"
+          android:textColor="#000000"
+          >
+     </TextView>
+     <TextView
+          android:id="@+id/gallonsheader"
+          android:gravity="center"
+          android:layout_width="10dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/gallons"
+          android:textColor="#000000"
+          >
+     </TextView>    
+     <TextView
+          android:id="@+id/costheader"
+          android:gravity="center"
+          android:layout_width="10dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/cost"
+          android:textColor="#000000"
+          >
+     </TextView>  
+     <TextView
+          android:id="@+id/mpgheader"
+          android:gravity="center"
+          android:layout_width="10dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/mpg"
+          android:textColor="#000000"
+          >
+     </TextView>  
+     
+     <TextView
+          android:id="@+id/dateheader"
+          android:gravity="center"
+          android:layout_width="90dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/thedate"
+          android:textColor="#000000"
+          >
+     </TextView>  
+     
+</LinearLayout>

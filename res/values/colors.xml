@@ -1,0 +1,10 @@
+<resources>
+<!--      <color name="alternate">#D8D8D8</color> same color as on intraweb--> 
+     <color name="alternate">#c0dbea</color>
+     <color name="white">#ffffff</color>
+     <color name="black">#000000</color>
+     <color name="notallblack">#c0c0c0</color>
+     <color name="red">#ff0000</color>
+     <color name="green">#00ff00</color>
+     <color name="colortest">#33ccff</color>
+</resources>

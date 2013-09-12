@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+>
+     <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:id="@+id/button"
+     >
+          <Button android:id="@+id/selectVehicle"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:hint="@string/pick"
+               android:onClick="selectVehicle"
+          />
+     </LinearLayout> 
+    <!--padding = distance around the actual text -->
+    <!--margin = distance around the component itself -->
+     <HorizontalScrollView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@+id/button"
+          >     
+               <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                         android:orientation="horizontal"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                    >
+                         <TableLayout
+                              android:id="@+id/scroll"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              
+                              android:background="@color/notallblack"
+                         >
+                         </TableLayout>
+                    </LinearLayout>
+               </ScrollView>
+     </HorizontalScrollView>
+</RelativeLayout>
+

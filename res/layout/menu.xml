@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/the_menu">
+    <!-- Single menu item
+         Set id, icon and Title for each menu item
+    -->
+     <!-- tools menu -->
+     <item android:id="@+id/menu_tools"
+          android:title="Tools"
+          >
+          <menu>
+               <item android:id="@+id/menu_upload"
+                    android:title="Upload Data"
+               />
+               <item android:id="@+id/menu_sync_vehicles"
+                    android:title="Sync Vehicles"
+               />
+               <item android:id="@+id/menu_sync_data"
+                    android:title="Sync Data"
+               />
+               
+          </menu>
+     </item>
+
+    <!-- Options menu -->    
+     <item android:id="@+id/menu_options"
+          android:title="Options"
+          >
+          <menu>
+               <item android:id="@+id/menu_add_vehicle"
+                    android:title="Add Vehicle"
+               />
+               <item android:id="@+id/menu_edit_vehicle"
+                    android:title="Edit Vehicle"
+               />
+          </menu>
+     </item>
+     <item android:id="@+id/menu_settings"
+          android:title="Configuration"
+     />
+     <!--
+     <item android:="@+id/settings"
+          android:title="Settings"
+               />-->
+
+</menu>

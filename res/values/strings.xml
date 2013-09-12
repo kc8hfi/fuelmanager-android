@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <string name="app_name">Fuel Manager</string>
+     
+     <string name="hello">Greetings!</string>
+     
+     <!-- labels on the entry form -->
+     <string name="miles">Miles</string>
+     <string name="gallons">Gallons</string>
+     <string name="cost">Cost</string>
+     <string name="mpg">MPG</string>
+     <string name="thedate">Date</string>
+     
+     <string name="date">Select Date</string>
+     <string name="pick">Select Vehicle</string>
+     <string name="save">Save Data</string>
+
+    <!-- labels on the upload data -->
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">Upload</string>
+    
+    <!--titles for the different activities -->
+    <string name="title_entry_form">Entry Form</string>
+    <string name="title_edit_data">Edit Mileage Data</string>
+    <string name="title_edit_vehicle">Edit Vehicle</string>
+    <string name="title_edit_vehicle_form">Edit Vehicle Description</string>
+    <string name="title_configuration">Configuration</string>
+    <string name="title_upload_data">Upload Data</string>
+    <string name="title_add_vehicle">Add a new vehicle</string>
+    <string name="title_monthly_stats">Monthly Stats</string>
+    <string name="title_yearly_stats">Yearly Stats</string>
+    <string name="title_lifetime_stats">Lifetime Stats</string>
+    <string name="title_sync_vehicles">Sync Vehicles</string>
+    <string name="title_login">Login</string>
+    <string name="title_about">About...</string>
+
+    <!-- labels on the configuration activity -->
+    <string name="radio_local">local database</string>
+    <string name="radio_remote">remote database</string>
+    
+    <!-- labels for the buttons -->
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    
+    <string name="login_button">Login</string>
+    
+    
+</resources>
+
+
