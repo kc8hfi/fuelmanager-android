@@ -46,11 +46,12 @@ public class Login extends Dashboard
                Authentication.setUser(u);
                Authentication.setPass(p);
 
-               ArrayList<String> passed = new ArrayList<String>();
-               passed.add(u);
-               passed.add(p);
-               passed.add(h);
-               passed.add(d);
+               String[] passed = new String[4];;
+               passed[0] = u;
+               passed[1] = p;
+               passed[2] = h;
+               passed[3] = d;
+               
                login.execute(passed);
                
           }

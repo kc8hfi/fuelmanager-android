@@ -22,7 +22,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.NameValuePair;
 
 //params, progress, result are the 3 things
-public class CheckLogin extends AsyncTask<ArrayList<String>, Integer, String>
+public class CheckLogin extends AsyncTask<String, Integer, String>
 {
      public CheckLogin(Dashboard d)
      {
@@ -35,64 +35,68 @@ public class CheckLogin extends AsyncTask<ArrayList<String>, Integer, String>
      }
      
      @Override
-     protected String doInBackground(ArrayList<String>... params)
+     protected String doInBackground(String... params)
      {
-          ArrayList<String> stuff = new ArrayList<String>();
-          stuff = params[0];
+          //ArrayList<String> stuff = new ArrayList<String>();
           String result = "";
-          String username = stuff.get(0);
-          String password = stuff.get(1);
-          String hostname = stuff.get(2);
-          String dbasename = stuff.get(3);
-          try
+          if (params.length ==4)
           {
-               HttpClient httpclient = new DefaultHttpClient();
-               HttpPost httppost = new HttpPost(hostname+"/connector/dbase_connection.php");
+               //stuff = params[0];
 
-               ArrayList<NameValuePair> credentials = new ArrayList<NameValuePair>();
-              
-               BasicNameValuePair u = new BasicNameValuePair("username",username);
-               BasicNameValuePair p = new BasicNameValuePair("password",password);
-               BasicNameValuePair d = new BasicNameValuePair("database",dbasename);
-               credentials.add(u);
-               credentials.add(p);
-               credentials.add(d);
-               
-               //Log.d("CheckLogin:",credentials.toString());
-               
-               UrlEncodedFormEntity encoder = new UrlEncodedFormEntity(credentials);
-               httppost.setEntity(encoder);
-               
-               //send all the stuff now
-               HttpResponse response = httpclient.execute(httppost);
-               HttpEntity entity = response.getEntity();
-               
-               InputStream is = entity.getContent();
-               BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
-               StringBuilder sb = new StringBuilder();
-               String line = null;
-               while ((line = reader.readLine()) != null)
+               String username = params[0];
+               String password = params[1];
+               String hostname = params[2];
+               String dbasename = params[3];
+               try
                {
-                    sb.append(line);
-               }
-               is.close();
+                    HttpClient httpclient = new DefaultHttpClient();
+                    HttpPost httppost = new HttpPost(hostname+"/connector/dbase_connection.php");
 
-               result=sb.toString();
-          }
-          catch (IllegalArgumentException badArgument)
-          {
-               Log.d("login","bad url to httppost");
-               result += "checkLogin: " + badArgument.toString();
-          }
-          catch(UnsupportedEncodingException badEncoding)
-          {
-               Log.d("login","bad encoding to urlencodedformentity");
-               result += "checkLogin: " + badEncoding.toString();
-          }
-          catch(IOException badio)
-          {
-               Log.d("login","bad io: " + badio.toString());
-               result += "checkLogin: " + badio.toString();
+                    ArrayList<NameValuePair> credentials = new ArrayList<NameValuePair>();
+               
+                    BasicNameValuePair u = new BasicNameValuePair("username",username);
+                    BasicNameValuePair p = new BasicNameValuePair("password",password);
+                    BasicNameValuePair d = new BasicNameValuePair("database",dbasename);
+                    credentials.add(u);
+                    credentials.add(p);
+                    credentials.add(d);
+                    
+                    //Log.d("CheckLogin:",credentials.toString());
+                    
+                    UrlEncodedFormEntity encoder = new UrlEncodedFormEntity(credentials);
+                    httppost.setEntity(encoder);
+                    
+                    //send all the stuff now
+                    HttpResponse response = httpclient.execute(httppost);
+                    HttpEntity entity = response.getEntity();
+                    
+                    InputStream is = entity.getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+                    while ((line = reader.readLine()) != null)
+                    {
+                         sb.append(line);
+                    }
+                    is.close();
+
+                    result=sb.toString();
+               }
+               catch (IllegalArgumentException badArgument)
+               {
+                    Log.d("login","bad url to httppost");
+                    result += "checkLogin: " + badArgument.toString();
+               }
+               catch(UnsupportedEncodingException badEncoding)
+               {
+                    Log.d("login","bad encoding to urlencodedformentity");
+                    result += "checkLogin: " + badEncoding.toString();
+               }
+               catch(IOException badio)
+               {
+                    Log.d("login","bad io: " + badio.toString());
+                    result += "checkLogin: " + badio.toString();
+               }
           }
           //Log.d("new login","'"+result+"'");
           return result;
