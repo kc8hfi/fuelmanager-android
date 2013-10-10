@@ -171,8 +171,20 @@ public class Config extends Dashboard implements OnCheckedChangeListener
                     else
                     {
                          editor.putString("dbase_location","remote");
-                         editor.putString("hostname",hostname.getText().toString());
+                         String fixed = "";
+                         String h = hostname.getText().toString();
+                         if (h.startsWith("http://"))
+                              fixed = h;
+                         else
+                              fixed = "http://" + h;
+                         editor.putString("hostname",fixed);
                          editor.putString("database",database.getText().toString());
+                         
+                         //write out the paths to the remote locations
+                         editor.putString("syncvehicle","/connector/get_vehicles.php");
+                         editor.putString("uploadmileage","/connector/upload_mileage.php");
+                         editor.putString("syncmileage","/connector/get_mileage.php");
+                         
                          editor.commit();
                          toast("Your changes were saved!");
                     }

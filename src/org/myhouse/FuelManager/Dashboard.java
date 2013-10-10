@@ -32,13 +32,6 @@ public abstract class Dashboard extends Activity
      {
           super.onCreate(savedInstanceState);
 
-          //edit the preferences and set the login to be nothing
-          SharedPreferences loginStatus = getSharedPreferences("login",Activity.MODE_PRIVATE);
-          SharedPreferences.Editor editor = loginStatus.edit();
-          editor.putString("login","");
-          editor.putString("item","");
-          editor.commit();
-          
           //initialize the database
           dbase = new MyDatabase(this);
           
@@ -209,8 +202,6 @@ public abstract class Dashboard extends Activity
      @Override
      public boolean onOptionsItemSelected(MenuItem item)
      {
-          SharedPreferences loginStuff = getSharedPreferences("login",Activity.MODE_PRIVATE);
-          String loggedIn = loginStuff.getString("login","");
           switch (item.getItemId())
           {
                case R.id.menu_settings:
@@ -223,7 +214,7 @@ public abstract class Dashboard extends Activity
                     startActivity(new Intent(getApplicationContext(), EditVehicle.class));
                     return true;
                case R.id.menu_sync_vehicles:
-                    if (!loggedIn.equals("logged in"))
+                    if (Authentication.getLoggedIn().equals("no"))
                     {
                          Authentication.setWhatToDo("sync vehicles");
                          startActivity(new Intent(getApplicationContext(), Login.class));
@@ -237,7 +228,7 @@ public abstract class Dashboard extends Activity
                     int tempMileageCount = dbase.getTempRecordCount();
                     if (tempMileageCount >0)
                     {
-                         if (!loggedIn.equals("logged in"))
+                         if (Authentication.getLoggedIn().equals("no"))
                          {
                               Authentication.setWhatToDo("upload mileage");
                               startActivity(new Intent(getApplicationContext(), Login.class));
@@ -253,7 +244,7 @@ public abstract class Dashboard extends Activity
                     }
                     return true;
                case R.id.menu_sync_data:
-                    if (!loggedIn.equals("logged in"))
+                    if (Authentication.getLoggedIn().equals("no"))
                     {
                          Authentication.setWhatToDo("sync data");
                          startActivity(new Intent(getApplicationContext(), Login.class));
@@ -375,32 +366,52 @@ public abstract class Dashboard extends Activity
           if(result.equals("success"))
           {
                //go back and set the login preferences to be logged in if result = success
-               SharedPreferences loginStatus = getSharedPreferences("login",Activity.MODE_PRIVATE);
-               SharedPreferences.Editor editor = loginStatus.edit();
+               //SharedPreferences loginStatus = getSharedPreferences("login",Activity.MODE_PRIVATE);
+               //SharedPreferences.Editor editor = loginStatus.edit();
 
-               editor.putString("login","logged in");
-               editor.commit();
-
-               if(loginStatus.contains("item"))
+               //editor.putString("login","logged in");
+               //editor.commit();
+               
+               Authentication.setLoggedIn("yes");
+               
+               Log.d("dashboard", Authentication.string());
+               
+               String whatToDo = Authentication.getWhatToDo();
+               if(whatToDo.equals("sync vehicles"))
                {
-                    String whatToDo = Authentication.getWhatToDo();
-                    if(whatToDo.equals("sync vehicles"))
-                    {
-                         syncVehicles();
-                    }
-                    else if (whatToDo.equals("upload mileage"))
-                    {
-                         uploadData();
-                    }
-                    else if(whatToDo.equals("sync data"))
-                    {
-                         syncData();
-                    }
+                    syncVehicles();
                }
+               else if (whatToDo.equals("upload mileage"))
+               {
+                    uploadData();
+               }
+               else if(whatToDo.equals("sync data"))
+               {
+                    syncData();
+               }
+               
+               
+//                if(loginStatus.contains("item"))
+//                {
+//                     String whatToDo = Authentication.getWhatToDo();
+//                     if(whatToDo.equals("sync vehicles"))
+//                     {
+//                          syncVehicles();
+//                     }
+//                     else if (whatToDo.equals("upload mileage"))
+//                     {
+//                          uploadData();
+//                     }
+//                     else if(whatToDo.equals("sync data"))
+//                     {
+//                          syncData();
+//                     }
+//                }
           }//result was success
           else
           {
-               //unset the user and pass 
+               //unset everything
+               Authentication.setLoggedIn("no");
                Authentication.setUser("");
                Authentication.setPass("");
                toast("Couldn't connect and/or login!  Check your configuration!");
@@ -414,12 +425,13 @@ public abstract class Dashboard extends Activity
      {
           SharedPreferences settings = getSharedPreferences("settings",Activity.MODE_PRIVATE);
           String host = settings.getString("hostname","");
-          String db = db = settings.getString("database","");
+          String db = settings.getString("database","");
+          String location = settings.getString("syncvehicle","");
           String user = Authentication.getUser();
           String pass = Authentication.getPass();
           
           SyncVehicleTask svt = new SyncVehicleTask(this);
-          svt.execute(user,pass,host,db);
+          svt.execute(user,pass,host,db,location);
      }
 
      /**
@@ -429,7 +441,8 @@ public abstract class Dashboard extends Activity
      {
           SharedPreferences settings = getSharedPreferences("settings",Activity.MODE_PRIVATE);
           String host = settings.getString("hostname","");
-          String db = db = settings.getString("database","");
+          String db = settings.getString("database","");
+          String location = settings.getString("uploadmileage","");
           String user = Authentication.getUser();
           String pass = Authentication.getPass();
           
@@ -438,7 +451,7 @@ public abstract class Dashboard extends Activity
           {
                JSONObject stuff = dbase.getTempMileage();
                UploadMileageDataTask umdt = new UploadMileageDataTask(this); 
-               umdt.execute(user,pass,host,db,stuff.toString());
+               umdt.execute(user,pass,host,db,location,stuff.toString());
           }
      }
      
@@ -449,7 +462,8 @@ public abstract class Dashboard extends Activity
      {
           SharedPreferences settings = getSharedPreferences("settings",Activity.MODE_PRIVATE);
           String host = settings.getString("hostname","");
-          String db = db = settings.getString("database","");
+          String db = settings.getString("database","");
+          String location = settings.getString("syncmileage","");
           String user = Authentication.getUser();
           String pass = Authentication.getPass();
           
@@ -459,7 +473,7 @@ public abstract class Dashboard extends Activity
                String lastId = dbase.getBiggestMileageId();
                //trace("the last id is: " + lastId);
                SyncMileageDataTask smdt = new SyncMileageDataTask(this);               
-               smdt.execute(user,pass,host,db,lastId);
+               smdt.execute(user,pass,host,db,location,lastId);
           }
           else
           {

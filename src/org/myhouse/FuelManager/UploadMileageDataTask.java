@@ -51,12 +51,13 @@ public class UploadMileageDataTask extends AsyncTask<String, Integer, String>   
           String password = params[1];
           String hostname = params[2];
           String dbasename = params[3];
-          String theData = params[4];   //this is a json object
+          String location = params[4];
+          String theData = params[5];   //this is a json object
           Log.d("UploadMileageDataTask","right before the  try block");
           try
           {
                HttpClient httpclient = new DefaultHttpClient();
-               HttpPost httppost = new HttpPost(hostname + "/upload_mileage.php");
+               HttpPost httppost = new HttpPost(hostname + location);
                ArrayList<NameValuePair> credentials = new ArrayList<NameValuePair>();
                BasicNameValuePair u = new BasicNameValuePair("username",username);
                BasicNameValuePair p = new BasicNameValuePair("password",password);

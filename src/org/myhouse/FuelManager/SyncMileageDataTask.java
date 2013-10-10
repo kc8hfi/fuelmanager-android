@@ -43,11 +43,12 @@ public class SyncMileageDataTask extends AsyncTask<String, Integer, String>
           String password = params[1];
           String hostname = params[2];
           String dbasename = params[3];
-          String lastid = params[4];
+          String location = params[4];
+          String lastid = params[5];
           try
           {
                HttpClient httpclient = new DefaultHttpClient();
-               HttpPost httppost = new HttpPost(hostname + "/get_mileage.php");
+               HttpPost httppost = new HttpPost(hostname + location);
                
                ArrayList<NameValuePair> credentials = new ArrayList<NameValuePair>();
                

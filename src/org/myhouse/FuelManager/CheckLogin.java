@@ -47,8 +47,8 @@ public class CheckLogin extends AsyncTask<ArrayList<String>, Integer, String>
           try
           {
                HttpClient httpclient = new DefaultHttpClient();
-               HttpPost httppost = new HttpPost(hostname+"/dbase_connection.php");
-              
+               HttpPost httppost = new HttpPost(hostname+"/connector/dbase_connection.php");
+
                ArrayList<NameValuePair> credentials = new ArrayList<NameValuePair>();
               
                BasicNameValuePair u = new BasicNameValuePair("username",username);
@@ -57,6 +57,8 @@ public class CheckLogin extends AsyncTask<ArrayList<String>, Integer, String>
                credentials.add(u);
                credentials.add(p);
                credentials.add(d);
+               
+               //Log.d("CheckLogin:",credentials.toString());
                
                UrlEncodedFormEntity encoder = new UrlEncodedFormEntity(credentials);
                httppost.setEntity(encoder);
@@ -79,20 +81,20 @@ public class CheckLogin extends AsyncTask<ArrayList<String>, Integer, String>
           }
           catch (IllegalArgumentException badArgument)
           {
-//                Log.d("login","bad url to httppost");
+               Log.d("login","bad url to httppost");
                result += "checkLogin: " + badArgument.toString();
           }
           catch(UnsupportedEncodingException badEncoding)
           {
-//                Log.d("login","bad encoding to urlencodedformentity");
+               Log.d("login","bad encoding to urlencodedformentity");
                result += "checkLogin: " + badEncoding.toString();
           }
           catch(IOException badio)
           {
-//                Log.d("login","bad io: " + badio.toString());
+               Log.d("login","bad io: " + badio.toString());
                result += "checkLogin: " + badio.toString();
           }
-//           Log.d("new login","'"+result+"'");
+          //Log.d("new login","'"+result+"'");
           return result;
      }//end doInBackground
      

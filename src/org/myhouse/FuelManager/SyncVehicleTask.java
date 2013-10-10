@@ -43,10 +43,11 @@ public class SyncVehicleTask extends AsyncTask<String, Integer, String>
           String password = params[1];
           String hostname = params[2];
           String dbasename = params[3];
+          String location = params[4];
           try
           {
                HttpClient httpclient = new DefaultHttpClient();
-               HttpPost httppost = new HttpPost(hostname + "/get_vehicles.php");
+               HttpPost httppost = new HttpPost(hostname + location);
                
                ArrayList<NameValuePair> credentials = new ArrayList<NameValuePair>();
                
