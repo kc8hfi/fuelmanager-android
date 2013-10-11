@@ -16,6 +16,7 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import java.util.ArrayList;
+import android.webkit.WebView;
 
 public class YearlyStats extends Dashboard
 {
@@ -33,23 +34,11 @@ public class YearlyStats extends Dashboard
           
           selectVehicleButton = (Button) findViewById(R.id.selectVehicle);
           selectVehicleButton.setText(currentVehicle.getVehicleDescription());
+          
+          theView = (WebView) findViewById(R.id.myView);
+          theView.getSettings().setBuiltInZoomControls(true);
+          theView.getSettings().setDisplayZoomControls(false);
 
-          scroller = (TableLayout) findViewById(R.id.scroll);
-          
-          tableRowParams = new TableLayout.LayoutParams
-                                                  (TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
-          tableRowParams.setMargins(2,2,2,2);
-          
-          firstRowMargin = new TableRow.LayoutParams(
-               TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
-          //left, top, right ,bottom)
-          firstRowMargin.setMargins(2,2,0,0);
-          
-          insideRowMargin = new TableRow.LayoutParams(
-               TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
-          //left, top, right ,bottom)
-          insideRowMargin.setMargins(2,0,0,0);
-          
           showStats();
      }//end onCreate
      
@@ -69,95 +58,60 @@ public class YearlyStats extends Dashboard
           //get the currently saved vehicle in preferences
           currentVehicle = getSavedVehicle();
           
-          //empty the table
-          scroller.removeAllViews();
-          
-          //get a new list of all the years
-          years = dbase.getYears(currentVehicle);
-          
-          //column headers
           ArrayList<String> headerNames = new ArrayList<String>();
+          headerNames.add("");
           headerNames.add("Fillups");
           headerNames.add("Miles");
           headerNames.add("Gallons");
           headerNames.add("Cost");
           headerNames.add("MPG");
           
-          TableRow headerRow = new TableRow(this);
-          headerRow.setLayoutParams(tableRowParams);
+          String thepage = beginning;
           
-          TextView headerv = new TextView(this);
-          headerv.setLayoutParams(firstRowMargin);
-          headerv.setPadding(3,0,3,0);
-          headerv.setText("");
-          headerv.setBackgroundResource(R.color.alternate);
-          headerRow.addView(headerv);
-          for(String header:headerNames)
+          //add the table column headers
+          thepage += "<tr class=\"bgcolor\">";
+          for (String s:headerNames)
           {
-               headerv = new TextView(this);
-               headerv.setLayoutParams(firstRowMargin);
-               headerv.setPadding(3,0,3,0);
-               headerv.setText(header);
-               headerv.setTextColor(Color.BLACK);
-               headerv.setBackgroundResource(R.color.alternate);
-               headerRow.addView(headerv);
+               thepage += "<th>" + s + "</th>";
           }
-          scroller.addView(headerRow);
+          thepage += "</tr>\n";
           
           ArrayList<ArrayList<String>> data = dbase.getYearlyStats(currentVehicle);
-          
-          int i = 0;          
-          for(ArrayList<String> r:data)
+          int i = 1;          
+          for(ArrayList<String> row:data)
           {
-               TableRow row = new TableRow(this);
-               row.setLayoutParams(tableRowParams);
-
-               TextView text = new TextView(this);
-               if (i == 0)
-                    text.setLayoutParams(firstRowMargin);
-               if (i <= data.size()-1)
-                    text.setLayoutParams(insideRowMargin);
-               text.setPadding(3,0,3,0);
-               text.setTextColor(Color.BLACK);
-               text.setText(years.get(i));
-               //alternate the row color
-               if ((i % 2) == 0)
+               String r="";
+               if ( (i%2) == 0)
                {
-                    text.setBackgroundResource(R.color.white);
+                    r += "<tr class=\"bgcolor\">";
                }
                else
                {
-                    text.setBackgroundResource(R.color.alternate);
+                    r += "<tr>";
                }
-               
-               row.addView(text);
-               for(String eachpart:r)
+               //each item in the row goes in td tags
+               for(String eachpart:row)
                {
-                    TextView monthyear = new TextView(this);
-                    if (i == 0)
-                         monthyear.setLayoutParams(firstRowMargin);
-                    if (i <= data.size()-1)
-                         monthyear.setLayoutParams(insideRowMargin);
-
-                    //left, top, right, bottom)
-                    monthyear.setPadding(3,0,3,1);
-                    monthyear.setTextColor(Color.BLACK);
-                    monthyear.setText(eachpart);
-                    
-                    if ((i % 2) == 0)
-                    {
-                         monthyear.setBackgroundResource(R.color.white);
-                    }
-                    else
-                    {
-                         monthyear.setBackgroundResource(R.color.alternate);
-                    }
-                    row.addView(monthyear);
+                    r += "<td>" + eachpart + "</td>";
                }
-               scroller.addView(row);
+               r += "</tr>\n";
+               
+               //add the row to the rest now
+               thepage += r;
                i++;
           }
-     }
+          //add the ending now
+          thepage += ending;
+          
+          //clear the page first
+          theView.loadUrl("about:blank");
+          //put the page onto the webview 
+          theView.loadData(thepage, "text/html", null);
+          
+//           trace (currentVehicle.toString());
+//           trace(thepage);
+          
+     }//end showStats
      
      /**
       * vehicle selection dialog click handler
@@ -179,10 +133,8 @@ public class YearlyStats extends Dashboard
      
      private Button selectVehicleButton;
      private Vehicle currentVehicle;
-     private TableLayout scroller;
-     private TableLayout.LayoutParams tableRowParams;
-     private TableRow.LayoutParams firstRowMargin;
-     private TableRow.LayoutParams insideRowMargin;
      private ArrayList<String> years;
+     
+     private WebView theView;
      
 }//end YearlyStats

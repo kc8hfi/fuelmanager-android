@@ -465,10 +465,10 @@ public class MyDatabase extends SQLiteOpenHelper
                               Log.d("exception",e.toString());
                          }
                          String t = "";
-                         t += "Fillups: " + sFillup + "\n";
-                         t += "Miles: " + sMiles + "\n";
-                         t += "Gallons: " + sGallons + "\n";
-                         t += "Cost: " + sCost + "\n";
+                         t += "Fillups: " + sFillup + "<br>";
+                         t += "Miles: " + sMiles + "<br>";
+                         t += "Gallons: " + sGallons + "<br>";
+                         t += "Cost: " + sCost + "<br>";
                          t += "MPG: " + sMpg;
                          
 //                          if(year.equals("2007") && month.equals("01"))
@@ -564,6 +564,7 @@ public class MyDatabase extends SQLiteOpenHelper
                     {
                          Log.d("exception",e.toString());
                     }
+                    row.add(sYear);
                     row.add(sFillup);
                     row.add(sMiles);
                     row.add(sGallons);

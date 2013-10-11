@@ -16,6 +16,7 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import java.util.ArrayList;
+import android.webkit.WebView;
 
 public class LifetimeStats extends Dashboard
 {
@@ -34,23 +35,11 @@ public class LifetimeStats extends Dashboard
           
           selectVehicleButton = (Button) findViewById(R.id.selectVehicle);
           selectVehicleButton.setText(currentVehicle.getVehicleDescription());
+          
+          theView = (WebView) findViewById(R.id.myView);
+          theView.getSettings().setBuiltInZoomControls(true);
+          theView.getSettings().setDisplayZoomControls(false);
 
-          scroller = (TableLayout) findViewById(R.id.scroll);
-          
-          tableRowParams = new TableLayout.LayoutParams
-                                                  (TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
-          tableRowParams.setMargins(2,2,2,2);
-          
-          firstRowMargin = new TableRow.LayoutParams(
-               TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
-          //left, top, right ,bottom)
-          firstRowMargin.setMargins(2,2,0,0);
-          
-          insideRowMargin = new TableRow.LayoutParams(
-               TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
-          //left, top, right ,bottom)
-          insideRowMargin.setMargins(2,0,0,0);
-          
           showStats();
      }//end onCreate
      
@@ -70,10 +59,6 @@ public class LifetimeStats extends Dashboard
           //get the currently saved vehicle in preferences
           currentVehicle = getSavedVehicle();
           
-          //empty the table
-          scroller.removeAllViews();
-          
-          //column headers
           ArrayList<String> headerNames = new ArrayList<String>();
           headerNames.add("Fillups");
           headerNames.add("Miles");
@@ -81,50 +66,37 @@ public class LifetimeStats extends Dashboard
           headerNames.add("Cost");
           headerNames.add("MPG");
           
-          TableRow headerRow = new TableRow(this);
-          headerRow.setLayoutParams(tableRowParams);
+          String thepage = beginning;
           
-          TextView headerv = new TextView(this);
-          // headerv.setLayoutParams(firstRowMargin);
-          // headerv.setPadding(3,0,3,0);
-          // headerv.setText("");
-          // headerv.setBackgroundResource(R.color.alternate);
-          // headerRow.addView(headerv);
-          for(String header:headerNames)
+          //add the table column headers
+          thepage += "<tr class=\"bgcolor\">";
+          for (String s:headerNames)
           {
-               headerv = new TextView(this);
-               headerv.setLayoutParams(firstRowMargin);
-               headerv.setPadding(3,0,3,0);
-               headerv.setText(header);
-               headerv.setTextColor(Color.BLACK);
-               headerv.setBackgroundResource(R.color.alternate);
-               headerRow.addView(headerv);
+               thepage += "<th>" + s + "</th>";
           }
-          scroller.addView(headerRow);
-          
+          thepage += "</tr>\n";
+
+
           ArrayList<String> data = dbase.getLifetimeStats(currentVehicle);
-          
-          TableRow row = new TableRow(this);
-          int i = 0;          
-          for(String r:data)
+          String r = "<tr>";
+          for(String item:data)
           {
-               row.setLayoutParams(tableRowParams);
-
-               TextView monthyear = new TextView(this);
-               monthyear.setLayoutParams(insideRowMargin);
-
-               //left, top, right, bottom)
-               monthyear.setPadding(3,0,3,1);
-               monthyear.setTextColor(Color.BLACK);
-               monthyear.setText(r);
-               
-               monthyear.setBackgroundResource(R.color.white);
-               row.addView(monthyear);
-               
-               i++;
-          }//end loop
-          scroller.addView(row);
-     }
+               r += "<td>" + item + "</td>";
+          }
+          r += "</tr>\n";
+          
+          //add the row to the table
+          thepage += r;
+          
+          //add the ending now
+          thepage += ending;
+          
+          //clear the page first
+          theView.loadUrl("about:blank");
+          //put the page onto the webview 
+          theView.loadData(thepage, "text/html", null);
+          
+     }//end showStats
      
      /**
       * what to do when they select a vehicle
@@ -146,10 +118,7 @@ public class LifetimeStats extends Dashboard
      
      private Button selectVehicleButton;
      private Vehicle currentVehicle;
-     private TableLayout scroller;
-     private TableLayout.LayoutParams tableRowParams;
-     private TableRow.LayoutParams firstRowMargin;
-     private TableRow.LayoutParams insideRowMargin;
      private ArrayList<String> years;
+     private WebView theView;
      
 }//end LifetimeStats

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,9 @@ import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.InputStream;
+import java.io.IOException;
+import java.util.Scanner;
 
 public abstract class Dashboard extends Activity
 {
@@ -41,6 +45,22 @@ public abstract class Dashboard extends Activity
           //set up the adapter for the listview
           adapter = new VehicleAdapter(this,names);
 
+          //get the html beginning part
+          AssetManager am = getAssets();
+          try
+          {
+               InputStream beginFileStream = am.open("begin.txt");
+               beginning = new Scanner (beginFileStream, "UTF-8").useDelimiter("\\A").next();
+               beginFileStream.close();
+               
+               InputStream endFileStream = am.open("end.txt");
+               ending = new Scanner (endFileStream, "UTF-8").useDelimiter("\\A").next();
+               endFileStream.close();
+          }
+          catch(IOException e)
+          {
+               //one or more of the files couldn't be opened
+          }
      }
      
      /**
@@ -492,5 +512,8 @@ public abstract class Dashboard extends Activity
      protected ArrayList<Vehicle> names;
      protected VehicleAdapter adapter;
      protected MyDatabase dbase;
+     
+     protected String beginning;
+     protected String ending;
      
 }//end class FuelManager
