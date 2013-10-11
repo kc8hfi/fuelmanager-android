@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<title>sample</title>
+<style type="text/css">
+.bgcolor
+{
+/*      background-color: #D8D8D8; */
+     background-color:   #c0dbea;
+}
+
+/* fix up the look of tables */
+/* table */
+.tabledata
+{
+     
+     /* show empty cells as regular cells */
+     empty-cells:   show;
+     border-width:  1px;
+     border-spacing:     2px;
+     border-collapse:    collapse;
+}
+
+/* table td,th  */
+.tabledata td,th
+{
+     /* make sure the table td fields don't wrap if they are long */
+     white-space: nowrap;
+     
+     border-width:  1px;
+     padding:  3px;
+     border-style:  solid;
+}
+
+</style>
+<body>
+
+<table class="tabledata" border="1"> 
